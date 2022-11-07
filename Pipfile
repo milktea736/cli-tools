@@ -6,9 +6,10 @@ name = "pypi"
 [packages]
 boto3 = "*"
 click = "*"
-yapf = "*"
-
-[dev - packages]
 
 [requires]
 python_version = "3.8"
+
+[dev-packages]
+build = "*"
+yapf = "*"
