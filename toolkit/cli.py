@@ -1,41 +1,17 @@
 import click
 
-from toolkit.okd.working_status_manager import WorkingStatusManger
+from toolkit.okd import okd_cli
+from toolkit.ec2 import ec2_cli
 
-USERS = ['Ivan', 'Jacky', 'Amber', 'Square']
 
 @click.group()
-def entry_point():
+@click.pass_context
+def entry_point(ctx):
     pass
 
-@click.group()
-def okd():
-    pass
 
-@okd.command()
-@click.option('--user', type=click.Choice(USERS, case_sensitive=True), required=True)
-def start(user: str):
-    wsm.udpate(user, True)
-
-
-@okd.command()
-@click.option('--user', type=click.Choice(USERS, case_sensitive=True), required=True)
-def stop(user: str):
-    wsm.udpate(user, False)
-
-
-@okd.command()
-def force_stop():
-    wsm.force_shutdown()
-
-
-@okd.command()
-def working():
-    wsm.show_working_status()
-
-
-wsm = WorkingStatusManger()
-entry_point.add_command(okd)
+entry_point.add_command(okd_cli)
+entry_point.add_command(ec2_cli)
 
 if __name__ == '__main__':
     entry_point()
