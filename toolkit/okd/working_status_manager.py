@@ -1,13 +1,17 @@
 import json
+import os
 from typing import Dict
 
 import boto3
+from dotenv import load_dotenv
+
+load_dotenv()
 
 USERS = ['Ivan', 'Jacky', 'Amber', 'Square']
 # okd cluster name
-CLUSTER_NAME = 'csc'
-BUCKET_NAME = 'lab-micro-cluster'
-KEY_NAME = 'okd-state/state.json'
+CLUSTER_NAME = os.getenv('CLUSTER_NAME')
+BUCKET_NAME = os.getenv('BUCKET_NAME')
+KEY_NAME = os.getenv('KEY_NAME')
 
 
 class WorkingStatusManger:
